@@ -1,0 +1,181 @@
+rules_version = '2';
+
+// JamKoi (Firebase edition) security rules.
+// Visitors are Firebase *anonymous* users. Everything a visitor can write is validated here, because a
+// static site has no server: these rules ARE the backend. Admins are users with a document admins/{uid}.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn()  { return request.auth != null; }
+    function isAdmin()   { return signedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)); }
+    function notBlocked(){ return !exists(/databases/$(database)/documents/blocked/$(request.auth.uid)); }
+    function userRef()   { return /databases/$(database)/documents/users/$(request.auth.uid); }
+
+    // ---- first-run bootstrap (setup.html). CHANGE THE CODE below to a long random string BEFORE you deploy these rules,
+    // ---- and do not commit the changed value. Whoever knows it can create the first admin, once.
+    function setupCode() { return 'CHANGE_ME_SETUP_CODE'; }
+    function setupDocPath() { return /databases/$(database)/documents/system/setup; }
+    function bootstrapping() {
+      return signedIn() && !exists(setupDocPath())
+          && existsAfter(setupDocPath())
+          && existsAfter(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // minutes a report of this type may stay visible (keep in sync with assets/js/trust.js)
+    function ttlMinutes(t) {
+      return {'congestion': 90, 'accident': 150, 'closure': 360, 'waterlogging': 300, 'roadwork': 720}[t];
+    }
+
+    function validReport(d) {
+      return d.keys().hasOnly(['type','level','lat','lng','precision','locationId','road','desc','uid','createdAt','expiresAt','utcHour'])
+        && d.keys().hasAll(['type','level','lat','lng','precision','road','desc','uid','createdAt','expiresAt','utcHour'])
+        && d.type in ['congestion','accident','closure','waterlogging','roadwork']
+        && d.level in ['heavy','moderate','clear']
+        && d.lat is number && d.lat >= 20.5 && d.lat <= 26.75
+        && d.lng is number && d.lng >= 88.0 && d.lng <= 92.75
+        && d.precision in ['gps','pin','area']
+        && (!('locationId' in d) || (d.locationId is string && d.locationId.size() > 0 && d.locationId.size() <= 80))
+        && d.road is string && d.road.size() <= 120
+        && d.desc is string && d.desc.size() <= 300
+        && !d.desc.lower().matches('.*(http|www\\.|\\.com|\\.net|\\.org|01[3-9][0-9]{8}).*')
+        && !d.road.lower().matches('.*(http|www\\.|\\.com|\\.net|\\.org).*')
+        && d.uid == request.auth.uid
+        && d.createdAt == request.time
+        && d.expiresAt is timestamp
+        && d.expiresAt > request.time
+        && d.expiresAt <= request.time + duration.value(ttlMinutes(d.type) + 10, 'm')
+        && d.utcHour is int && d.utcHour >= 0 && d.utcHour < 24
+        && (d.utcHour == request.time.hours()
+            || d.utcHour == (request.time.hours() + 1) % 24
+            || d.utcHour == (request.time.hours() + 23) % 24);
+    }
+
+    // ---- reports: public read; anonymous create (throttled via users/{uid}); admin moderation ----
+    match /reports/{reportId} {
+      allow read: if true;
+      allow create: if signedIn() && notBlocked()
+                    && validReport(request.resource.data)
+                    // the same batch must also write users/{uid}, whose rules enforce the throttle
+                    && getAfter(userRef()).data.lastReportAt == request.time;
+      allow update, delete: if isAdmin();
+    }
+
+    // ---- per-account throttle: >= 45 s between reports, max 6 per rolling hour window ----
+    match /users/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow create: if signedIn() && request.auth.uid == uid
+                    && request.resource.data.keys().hasOnly(['lastReportAt','hourStart','hourCount'])
+                    && request.resource.data.lastReportAt == request.time
+                    && request.resource.data.hourStart == request.time
+                    && request.resource.data.hourCount == 1;
+      allow update: if signedIn() && request.auth.uid == uid
+                    && request.resource.data.keys().hasOnly(['lastReportAt','hourStart','hourCount'])
+                    && request.resource.data.lastReportAt == request.time
+                    && resource.data.lastReportAt <= request.time - duration.value(45, 's')
+                    && (
+                         // same hour window: counter +1, max 6
+                         (request.resource.data.hourStart == resource.data.hourStart
+                          && request.time < resource.data.hourStart + duration.value(1, 'h')
+                          && request.resource.data.hourCount == resource.data.hourCount + 1
+                          && request.resource.data.hourCount <= 6)
+                         ||
+                         // new hour window
+                         (request.time >= resource.data.hourStart + duration.value(1, 'h')
+                          && request.resource.data.hourStart == request.time
+                          && request.resource.data.hourCount == 1)
+                       );
+      allow delete: if false;
+    }
+
+    // ---- votes: one per account per report (doc id = reportId_uid); no voting on your own or expired reports ----
+    function validVote(d, voteId) {
+      return d.keys().hasOnly(['reportId','uid','vote','isNear','createdAt'])
+        && d.keys().hasAll(['reportId','uid','vote','isNear','createdAt'])
+        && d.uid == request.auth.uid
+        && d.reportId is string && d.reportId.size() > 0 && d.reportId.size() <= 40
+        && voteId == d.reportId + '_' + request.auth.uid
+        && d.vote in ['confirm','dispute']
+        && d.isNear is bool
+        && d.createdAt == request.time
+        && exists(/databases/$(database)/documents/reports/$(d.reportId))
+        && get(/databases/$(database)/documents/reports/$(d.reportId)).data.uid != request.auth.uid
+        && get(/databases/$(database)/documents/reports/$(d.reportId)).data.expiresAt > request.time;
+    }
+    match /votes/{voteId} {
+      allow read: if true;
+      allow create: if signedIn() && notBlocked() && validVote(request.resource.data, voteId);
+      allow update: if signedIn() && notBlocked() && resource.data.uid == request.auth.uid && validVote(request.resource.data, voteId);
+      allow delete: if isAdmin();
+    }
+
+    // ---- admin identity & moderation lists (create admins/{uid} manually in the console) ----
+    match /admins/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      // only the setup wizard can create the FIRST admin (same batch must create system/setup for this uid)
+      allow create: if signedIn() && request.auth.uid == uid && !exists(setupDocPath())
+                    && getAfter(setupDocPath()).data.adminUid == uid;
+      allow update, delete: if false;
+    }
+
+    // setup_claims/{code}: proves the owner knows setupCode(); nobody can read it back
+    match /setup_claims/{code} {
+      allow create: if signedIn() && code == setupCode() && !exists(setupDocPath())
+                    && request.resource.data.keys().hasOnly(['uid'])
+                    && request.resource.data.uid == request.auth.uid;
+      allow read, update, delete: if false;
+    }
+    // system/setup: public single-doc read tells the app whether first-run setup has been completed
+    match /system/{docId} {
+      allow get: if true;
+      allow list: if false;
+      allow create: if docId == 'setup' && signedIn() && !exists(setupDocPath())
+                    && existsAfter(/databases/$(database)/documents/setup_claims/$(setupCode()))
+                    && request.resource.data.keys().hasOnly(['done','adminUid','createdAt'])
+                    && request.resource.data.done == true
+                    && request.resource.data.adminUid == request.auth.uid
+                    && request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
+    }
+    match /blocked/{uid} {
+      allow read, write: if isAdmin();
+    }
+
+    // ---- site settings: public read, admin write ----
+    match /settings/{id} {
+      allow read: if true;
+      allow write: if isAdmin() || bootstrapping();
+    }
+
+    // ---- ads & sponsored listings: only active ones are public; anyone may add +1 to an active ad's click counter ----
+    match /ads/{adId} {
+      allow read: if resource.data.isActive == true || isAdmin();
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin()
+                    || (resource.data.isActive == true
+                        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['clicks'])
+                        && request.resource.data.clicks == resource.data.clicks + 1);
+    }
+    match /sponsors/{sId} {
+      allow read: if resource.data.isActive == true || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // ---- premium-alert waitlist: one entry per anonymous account, consent required, readable only by admins ----
+    match /subscriptions/{uid} {
+      allow create, update: if signedIn() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['channel','contact','locationId','minLevel','consent','createdAt'])
+        && request.resource.data.keys().hasAll(['channel','contact','minLevel','consent','createdAt'])
+        && request.resource.data.channel in ['email','sms']
+        && request.resource.data.contact is string && request.resource.data.contact.size() <= 190
+        && ((request.resource.data.channel == 'email' && request.resource.data.contact.matches('[^@ ]+@[^@ ]+\\.[^@ ]+'))
+            || (request.resource.data.channel == 'sms' && request.resource.data.contact.matches('(\\+?88)?01[3-9][0-9]{8}')))
+        && request.resource.data.minLevel in ['heavy','moderate']
+        && request.resource.data.consent == true
+        && request.resource.data.createdAt == request.time;
+      allow read, delete: if isAdmin();
+    }
+
+    // everything else is closed
+    match /{document=**} { allow read, write: if false; }
+  }
+}

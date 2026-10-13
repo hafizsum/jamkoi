@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JamKoi</title>
+<meta name="description" content="জ্যামকই - বাংলাদেশের লাইভ ট্রাফিক রিপোর্ট | JamKoi - community traffic reports for Bangladesh">
+<meta name="theme-color" content="#17212b">
+<meta property="og:title" content="JamKoi - জ্যামকই">
+<meta property="og:description" content="Community traffic reports, hotspots and route comparison for Bangladesh.">
+<meta property="og:image" content="assets/icons/icon-512.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@500;700&amp;family=Hind+Siliguri:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body data-title="site.tagline">
+<main id="main" class="jk-home">
+  <section class="jk-mapwrap" data-i18n-label="map.region">
+    <div id="jk-map" role="application" data-i18n-label="map.aria"></div>
+    <div class="jk-searchbar">
+      <label for="jk-search" class="visually-hidden" data-i18n="search.label"></label>
+      <input id="jk-search" type="search" class="form-control" data-i18n-ph="search.placeholder" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="jk-search-results" maxlength="60">
+      <ul id="jk-search-results" class="list-group jk-search-results d-none" role="listbox"></ul>
+    </div>
+    <div class="jk-chips" role="group" data-i18n-label="filter.label">
+      <button type="button" class="jk-chip is-on" data-level="all" data-i18n="filter.all"></button>
+      <button type="button" class="jk-chip" data-level="heavy"><span class="jk-dot jk-dot-heavy" aria-hidden="true"></span><span data-i18n="level.heavy"></span></button>
+      <button type="button" class="jk-chip" data-level="moderate"><span class="jk-dot jk-dot-moderate" aria-hidden="true"></span><span data-i18n="level.moderate"></span></button>
+      <button type="button" class="jk-chip" data-level="clear"><span class="jk-dot jk-dot-clear" aria-hidden="true"></span><span data-i18n="level.clear"></span></button>
+      <button type="button" class="jk-chip" data-verified="1" aria-pressed="false">✔ <span data-i18n="filter.verified"></span></button>
+    </div>
+    <div class="jk-map-actions"><button type="button" id="jk-locate" class="jk-fab-sm" data-i18n-label="map.locate">📍</button><button type="button" id="jk-refresh" class="jk-fab-sm" data-i18n-label="map.refresh">⟳</button></div>
+    <button type="button" class="jk-fab" data-bs-toggle="modal" data-bs-target="#jk-report-modal"><span aria-hidden="true">＋</span> <span data-i18n="nav.report"></span></button>
+    <div id="jk-map-status" class="jk-map-status d-none" role="status" aria-live="polite"></div>
+  </section>
+  <aside class="jk-panel" data-i18n-label="panel.label">
+    <div data-ad-slot="home_top"></div>
+    <div class="jk-stats" aria-live="polite">
+      <div><b data-stat="active_incidents">–</b><span data-i18n="stat.active"></span></div>
+      <div><b data-stat="heavy_incidents">–</b><span data-i18n="stat.heavy"></span></div>
+      <div><b data-stat="reports_24h">–</b><span data-i18n="stat.reports24"></span></div>
+    </div>
+    <ul class="nav jk-tabs" role="tablist">
+      <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-recent" type="button" role="tab" data-i18n="panel.recent"></button></li>
+      <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-hot" type="button" role="tab" data-i18n="panel.hotspots"></button></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="tab-recent" role="tabpanel"><ul class="jk-list" id="jk-recent"><li class="jk-empty" data-i18n="common.loading"></li></ul></div>
+      <div class="tab-pane fade" id="tab-hot" role="tabpanel"><ul class="jk-list" id="jk-hot"><li class="jk-empty" data-i18n="common.loading"></li></ul></div>
+    </div>
+    <div class="form-check form-switch mt-3"><input class="form-check-input" type="checkbox" role="switch" id="jk-sponsored-toggle" checked><label class="form-check-label" for="jk-sponsored-toggle" data-i18n="map.show_sponsored"></label></div>
+    <div data-ad-slot="home_side"></div>
+    <p class="jk-note mt-3" data-i18n="footer.disclaimer"></p>
+  </aside>
+</main>
+<div class="modal fade" id="jk-report-modal" tabindex="-1" aria-labelledby="jk-report-title" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-sm-down modal-dialog-scrollable modal-lg"><div class="modal-content">
+    <div class="modal-header"><h2 class="modal-title h5" id="jk-report-title" data-i18n="report.title"></h2><button type="button" class="btn-close" data-bs-dismiss="modal" data-i18n-label="common.close"></button></div>
+    <div class="modal-body">
+      <form id="jk-report-form" novalidate autocomplete="off">
+        <div class="jk-hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <fieldset class="mb-3"><legend class="jk-legend" data-i18n="report.where"></legend>
+          <label for="rf-location" class="form-label" data-i18n="report.area"></label>
+          <select id="rf-location" name="location_id" class="form-select mb-2"></select>
+          <label for="rf-road" class="form-label" data-i18n="report.road"></label>
+          <input id="rf-road" name="road_name" class="form-control mb-2" maxlength="120" list="rf-roads" data-i18n-ph="report.road_ph"><datalist id="rf-roads"></datalist>
+          <div class="d-flex flex-wrap gap-2 align-items-center mb-2"><button type="button" id="rf-gps" class="btn btn-outline-dark btn-sm">📍 <span data-i18n="report.use_gps"></span></button><span id="rf-geo-status" class="small text-muted" role="status" data-i18n="report.tap_map"></span></div>
+          <div id="rf-map" class="jk-minimap" role="application" data-i18n-label="report.pin_map"></div></fieldset>
+        <fieldset class="mb-3"><legend class="jk-legend" data-i18n="report.what"></legend><div class="jk-choices"><input type="radio" class="btn-check" name="type" id="rf-type-congestion" value="congestion" checked><label class="jk-choice" for="rf-type-congestion"><span aria-hidden="true">🚗</span> <span data-i18n="type.congestion"></span></label><input type="radio" class="btn-check" name="type" id="rf-type-accident" value="accident" ><label class="jk-choice" for="rf-type-accident"><span aria-hidden="true">💥</span> <span data-i18n="type.accident"></span></label><input type="radio" class="btn-check" name="type" id="rf-type-closure" value="closure" ><label class="jk-choice" for="rf-type-closure"><span aria-hidden="true">⛔</span> <span data-i18n="type.closure"></span></label><input type="radio" class="btn-check" name="type" id="rf-type-waterlogging" value="waterlogging" ><label class="jk-choice" for="rf-type-waterlogging"><span aria-hidden="true">🌊</span> <span data-i18n="type.waterlogging"></span></label><input type="radio" class="btn-check" name="type" id="rf-type-roadwork" value="roadwork" ><label class="jk-choice" for="rf-type-roadwork"><span aria-hidden="true">🚧</span> <span data-i18n="type.roadwork"></span></label></div></fieldset>
+        <fieldset class="mb-3"><legend class="jk-legend" data-i18n="report.how_bad"></legend><div class="jk-choices jk-choices-level"><input type="radio" class="btn-check" name="level" id="rf-level-heavy" value="heavy" checked><label class="jk-choice jk-choice-heavy" for="rf-level-heavy"><span class="jk-dot jk-dot-heavy" aria-hidden="true"></span> <span data-i18n="level.heavy"></span></label><input type="radio" class="btn-check" name="level" id="rf-level-moderate" value="moderate" ><label class="jk-choice jk-choice-moderate" for="rf-level-moderate"><span class="jk-dot jk-dot-moderate" aria-hidden="true"></span> <span data-i18n="level.moderate"></span></label><input type="radio" class="btn-check" name="level" id="rf-level-clear" value="clear" ><label class="jk-choice jk-choice-clear" for="rf-level-clear"><span class="jk-dot jk-dot-clear" aria-hidden="true"></span> <span data-i18n="level.clear"></span></label></div></fieldset>
+        <div class="mb-3"><label for="rf-desc" class="form-label"><span data-i18n="report.desc"></span> <span class="text-muted">(<span data-i18n="common.optional"></span>)</span></label>
+          <textarea id="rf-desc" name="description" class="form-control" rows="2" maxlength="300" data-i18n-ph="report.desc_ph"></textarea><div class="form-text"><span id="rf-count">0</span>/300</div></div>
+        <div id="rf-error" class="alert alert-danger d-none" role="alert"></div>
+        <button type="submit" class="btn jk-btn-primary btn-lg w-100" id="rf-submit" data-i18n="report.submit"></button>
+        <p class="small text-muted mt-2 mb-0" data-i18n="report.anon_note"></p>
+      </form>
+      <div id="rf-success" class="d-none text-center py-3" role="status"><div class="display-5" aria-hidden="true">✅</div>
+        <h3 class="h5 mt-2" data-i18n="report.thanks"></h3><p class="text-muted" data-i18n="report.thanks_sub"></p>
+        <div class="d-flex flex-wrap gap-2 justify-content-center"><button type="button" class="btn btn-outline-dark" id="rf-share" data-i18n="share.share"></button>
+          <a class="btn btn-outline-success" id="rf-wa" target="_blank" rel="noopener">WhatsApp</a><button type="button" class="btn btn-outline-secondary" id="rf-copy" data-i18n="share.copy"></button>
+          <a class="btn btn-dark" id="rf-view" data-i18n="report.view"></a></div></div>
+    </div></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+<script type="module" src="assets/js/home.js"></script>
+</body>
+</html>

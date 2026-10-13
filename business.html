@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JamKoi</title>
+<meta name="description" content="জ্যামকই - বাংলাদেশের লাইভ ট্রাফিক রিপোর্ট | JamKoi - community traffic reports for Bangladesh">
+<meta name="theme-color" content="#17212b">
+<meta property="og:title" content="JamKoi - জ্যামকই">
+<meta property="og:description" content="Community traffic reports, hotspots and route comparison for Bangladesh.">
+<meta property="og:image" content="assets/icons/icon-512.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@500;700&amp;family=Hind+Siliguri:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body data-title="nav.business">
+<main id="main" class="jk-page"><h1 class="h2" data-i18n="biz.h1"></h1><p class="lead" data-i18n="biz.lead"></p>
+ <div class="jk-grid jk-grid-3 mb-3"><section class="jk-card"><h2 class="h5">📢 <span data-i18n="biz.ads_h"></span></h2><p data-i18n="biz.ads_p"></p></section>
+  <section class="jk-card"><h2 class="h5">⭐ <span data-i18n="biz.spons_h"></span></h2><p data-i18n="biz.spons_p"></p></section>
+  <section class="jk-card"><h2 class="h5">📈 <span data-i18n="biz.analytics_h"></span></h2><p data-i18n="biz.analytics_p"></p></section></div>
+ <p id="biz-contact" class="d-none"></p>
+ <section class="jk-card" id="alerts"><h2 class="h4">🔔 <span data-i18n="biz.alerts_h"></span></h2><p data-i18n="biz.alerts_p"></p>
+  <form id="jk-sub-form" class="row g-2" novalidate><div class="jk-hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+   <div class="col-md-3"><label class="form-label" for="sub-channel" data-i18n="biz.channel"></label><select id="sub-channel" name="channel" class="form-select"><option value="email">Email</option><option value="sms">SMS</option></select></div>
+   <div class="col-md-5"><label class="form-label" for="sub-contact" data-i18n="biz.contact_field"></label><input id="sub-contact" name="contact" class="form-control" maxlength="190" required></div>
+   <div class="col-md-4"><label class="form-label" for="sub-loc" data-i18n="report.area"></label><select id="sub-loc" name="location_id" class="form-select"></select></div>
+   <div class="col-12"><div class="form-check"><input class="form-check-input" type="checkbox" id="sub-consent" name="consent" value="1"><label class="form-check-label" for="sub-consent" data-i18n="biz.consent"></label></div></div>
+   <div class="col-12"><button class="btn jk-btn-primary" type="submit" data-i18n="biz.join"></button></div><div class="col-12"><div id="sub-msg" role="status" class="small"></div></div></form></section></main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script type="module" src="assets/js/business.js"></script>
+</body>
+</html>

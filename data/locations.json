@@ -1,0 +1,716 @@
+{
+ "locations": [
+  {
+   "id": "dhaka",
+   "parent": null,
+   "kind": "district",
+   "name_bn": "ঢাকা",
+   "name_en": "Dhaka",
+   "lat": 23.8103,
+   "lng": 90.4125,
+   "radius": 15000
+  },
+  {
+   "id": "chattogram",
+   "parent": null,
+   "kind": "district",
+   "name_bn": "চট্টগ্রাম",
+   "name_en": "Chattogram",
+   "lat": 22.3569,
+   "lng": 91.7832,
+   "radius": 12000
+  },
+  {
+   "id": "gazipur",
+   "parent": null,
+   "kind": "district",
+   "name_bn": "গাজীপুর",
+   "name_en": "Gazipur",
+   "lat": 24.0022,
+   "lng": 90.4264,
+   "radius": 12000
+  },
+  {
+   "id": "narayanganj",
+   "parent": null,
+   "kind": "district",
+   "name_bn": "নারায়ণগঞ্জ",
+   "name_en": "Narayanganj",
+   "lat": 23.6238,
+   "lng": 90.5,
+   "radius": 8000
+  },
+  {
+   "id": "sylhet",
+   "parent": null,
+   "kind": "district",
+   "name_bn": "সিলেট",
+   "name_en": "Sylhet",
+   "lat": 24.8949,
+   "lng": 91.8687,
+   "radius": 8000
+  },
+  {
+   "id": "rajshahi",
+   "parent": null,
+   "kind": "district",
+   "name_bn": "রাজশাহী",
+   "name_en": "Rajshahi",
+   "lat": 24.3745,
+   "lng": 88.6042,
+   "radius": 8000
+  },
+  {
+   "id": "khulna",
+   "parent": null,
+   "kind": "district",
+   "name_bn": "খুলনা",
+   "name_en": "Khulna",
+   "lat": 22.8456,
+   "lng": 89.5403,
+   "radius": 8000
+  },
+  {
+   "id": "barishal",
+   "parent": null,
+   "kind": "district",
+   "name_bn": "বরিশাল",
+   "name_en": "Barishal",
+   "lat": 22.701,
+   "lng": 90.3535,
+   "radius": 6000
+  },
+  {
+   "id": "rangpur",
+   "parent": null,
+   "kind": "district",
+   "name_bn": "রংপুর",
+   "name_en": "Rangpur",
+   "lat": 25.7439,
+   "lng": 89.2752,
+   "radius": 6000
+  },
+  {
+   "id": "mymensingh",
+   "parent": null,
+   "kind": "district",
+   "name_bn": "ময়মনসিংহ",
+   "name_en": "Mymensingh",
+   "lat": 24.7471,
+   "lng": 90.4203,
+   "radius": 6000
+  },
+  {
+   "id": "cumilla",
+   "parent": null,
+   "kind": "district",
+   "name_bn": "কুমিল্লা",
+   "name_en": "Cumilla",
+   "lat": 23.4607,
+   "lng": 91.1809,
+   "radius": 6000
+  },
+  {
+   "id": "farmgate",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "ফার্মগেট",
+   "name_en": "Farmgate",
+   "lat": 23.7575,
+   "lng": 90.389,
+   "radius": 1800
+  },
+  {
+   "id": "mohakhali",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "মহাখালী",
+   "name_en": "Mohakhali",
+   "lat": 23.7782,
+   "lng": 90.404,
+   "radius": 1800
+  },
+  {
+   "id": "banani",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "বনানী",
+   "name_en": "Banani",
+   "lat": 23.7937,
+   "lng": 90.4066,
+   "radius": 1800
+  },
+  {
+   "id": "gulshan-1",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "গুলশান ১",
+   "name_en": "Gulshan 1",
+   "lat": 23.7806,
+   "lng": 90.4166,
+   "radius": 1600
+  },
+  {
+   "id": "gulshan-2",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "গুলশান ২",
+   "name_en": "Gulshan 2",
+   "lat": 23.7925,
+   "lng": 90.4163,
+   "radius": 1600
+  },
+  {
+   "id": "badda",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "বাড্ডা",
+   "name_en": "Badda",
+   "lat": 23.7805,
+   "lng": 90.426,
+   "radius": 2200
+  },
+  {
+   "id": "bashundhara",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "বসুন্ধরা",
+   "name_en": "Bashundhara R/A",
+   "lat": 23.8137,
+   "lng": 90.4247,
+   "radius": 2500
+  },
+  {
+   "id": "kuril",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "কুড়িল",
+   "name_en": "Kuril",
+   "lat": 23.8213,
+   "lng": 90.4219,
+   "radius": 2000
+  },
+  {
+   "id": "uttara",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "উত্তরা",
+   "name_en": "Uttara",
+   "lat": 23.8759,
+   "lng": 90.3795,
+   "radius": 3500
+  },
+  {
+   "id": "abdullahpur",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "আব্দুল্লাহপুর",
+   "name_en": "Abdullahpur",
+   "lat": 23.88,
+   "lng": 90.4,
+   "radius": 2000
+  },
+  {
+   "id": "mirpur-10",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "মিরপুর ১০",
+   "name_en": "Mirpur 10",
+   "lat": 23.8069,
+   "lng": 90.3687,
+   "radius": 2200
+  },
+  {
+   "id": "mirpur-1",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "মিরপুর ১",
+   "name_en": "Mirpur 1",
+   "lat": 23.7957,
+   "lng": 90.3537,
+   "radius": 2200
+  },
+  {
+   "id": "mohammadpur",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "মোহাম্মদপুর",
+   "name_en": "Mohammadpur",
+   "lat": 23.7662,
+   "lng": 90.3589,
+   "radius": 2200
+  },
+  {
+   "id": "gabtoli",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "গাবতলী",
+   "name_en": "Gabtoli",
+   "lat": 23.7786,
+   "lng": 90.3446,
+   "radius": 2000
+  },
+  {
+   "id": "dhanmondi",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "ধানমন্ডি",
+   "name_en": "Dhanmondi",
+   "lat": 23.7461,
+   "lng": 90.3742,
+   "radius": 2200
+  },
+  {
+   "id": "science-lab",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "সায়েন্স ল্যাব",
+   "name_en": "Science Lab",
+   "lat": 23.7387,
+   "lng": 90.3832,
+   "radius": 1500
+  },
+  {
+   "id": "shahbag",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "শাহবাগ",
+   "name_en": "Shahbag",
+   "lat": 23.7387,
+   "lng": 90.3958,
+   "radius": 1500
+  },
+  {
+   "id": "kawran-bazar",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "কারওয়ান বাজার",
+   "name_en": "Kawran Bazar",
+   "lat": 23.7506,
+   "lng": 90.3935,
+   "radius": 1500
+  },
+  {
+   "id": "tejgaon",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "তেজগাঁও",
+   "name_en": "Tejgaon",
+   "lat": 23.766,
+   "lng": 90.399,
+   "radius": 2000
+  },
+  {
+   "id": "malibagh",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "মালিবাগ",
+   "name_en": "Malibagh",
+   "lat": 23.7513,
+   "lng": 90.4146,
+   "radius": 1500
+  },
+  {
+   "id": "rampura",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "রামপুরা",
+   "name_en": "Rampura",
+   "lat": 23.7612,
+   "lng": 90.4281,
+   "radius": 1800
+  },
+  {
+   "id": "khilgaon",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "খিলগাঁও",
+   "name_en": "Khilgaon",
+   "lat": 23.7507,
+   "lng": 90.4338,
+   "radius": 1800
+  },
+  {
+   "id": "motijheel",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "মতিঝিল",
+   "name_en": "Motijheel",
+   "lat": 23.733,
+   "lng": 90.4172,
+   "radius": 1800
+  },
+  {
+   "id": "jatrabari",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "যাত্রাবাড়ী",
+   "name_en": "Jatrabari",
+   "lat": 23.7104,
+   "lng": 90.4339,
+   "radius": 2200
+  },
+  {
+   "id": "savar",
+   "parent": "dhaka",
+   "kind": "area",
+   "name_bn": "সাভার",
+   "name_en": "Savar",
+   "lat": 23.8583,
+   "lng": 90.2667,
+   "radius": 3000
+  },
+  {
+   "id": "gec-circle",
+   "parent": "chattogram",
+   "kind": "area",
+   "name_bn": "জিইসি মোড়",
+   "name_en": "GEC Circle",
+   "lat": 22.3597,
+   "lng": 91.8217,
+   "radius": 1500
+  },
+  {
+   "id": "agrabad",
+   "parent": "chattogram",
+   "kind": "area",
+   "name_bn": "আগ্রাবাদ",
+   "name_en": "Agrabad",
+   "lat": 22.3254,
+   "lng": 91.8097,
+   "radius": 1800
+  },
+  {
+   "id": "muradpur",
+   "parent": "chattogram",
+   "kind": "area",
+   "name_bn": "মুরাদপুর",
+   "name_en": "Muradpur",
+   "lat": 22.3687,
+   "lng": 91.8329,
+   "radius": 1500
+  },
+  {
+   "id": "bahaddarhat",
+   "parent": "chattogram",
+   "kind": "area",
+   "name_bn": "বহদ্দারহাট",
+   "name_en": "Bahaddarhat",
+   "lat": 22.3797,
+   "lng": 91.8264,
+   "radius": 1500
+  },
+  {
+   "id": "tongi",
+   "parent": "gazipur",
+   "kind": "area",
+   "name_bn": "টঙ্গী",
+   "name_en": "Tongi",
+   "lat": 23.8917,
+   "lng": 90.4056,
+   "radius": 2500
+  },
+  {
+   "id": "joydebpur",
+   "parent": "gazipur",
+   "kind": "area",
+   "name_bn": "জয়দেবপুর",
+   "name_en": "Joydebpur",
+   "lat": 24.0,
+   "lng": 90.42,
+   "radius": 2500
+  },
+  {
+   "id": "chashara",
+   "parent": "narayanganj",
+   "kind": "area",
+   "name_bn": "চাষাড়া",
+   "name_en": "Chashara",
+   "lat": 23.6237,
+   "lng": 90.5018,
+   "radius": 2000
+  },
+  {
+   "id": "zindabazar",
+   "parent": "sylhet",
+   "kind": "area",
+   "name_bn": "জিন্দাবাজার",
+   "name_en": "Zindabazar",
+   "lat": 24.8962,
+   "lng": 91.869,
+   "radius": 1500
+  },
+  {
+   "id": "ambarkhana",
+   "parent": "sylhet",
+   "kind": "area",
+   "name_bn": "আম্বরখানা",
+   "name_en": "Ambarkhana",
+   "lat": 24.9066,
+   "lng": 91.8714,
+   "radius": 1500
+  },
+  {
+   "id": "shaheb-bazar",
+   "parent": "rajshahi",
+   "kind": "area",
+   "name_bn": "সাহেব বাজার",
+   "name_en": "Shaheb Bazar",
+   "lat": 24.3636,
+   "lng": 88.602,
+   "radius": 1500
+  },
+  {
+   "id": "shibbari",
+   "parent": "khulna",
+   "kind": "area",
+   "name_bn": "শিববাড়ী",
+   "name_en": "Shibbari",
+   "lat": 22.819,
+   "lng": 89.561,
+   "radius": 1500
+  },
+  {
+   "id": "sonadanga",
+   "parent": "khulna",
+   "kind": "area",
+   "name_bn": "সোনাডাঙ্গা",
+   "name_en": "Sonadanga",
+   "lat": 22.8008,
+   "lng": 89.5352,
+   "radius": 1500
+  },
+  {
+   "id": "bells-park",
+   "parent": "barishal",
+   "kind": "area",
+   "name_bn": "বেলস পার্ক",
+   "name_en": "Bell's Park",
+   "lat": 22.703,
+   "lng": 90.3705,
+   "radius": 1500
+  },
+  {
+   "id": "modern-more",
+   "parent": "rangpur",
+   "kind": "area",
+   "name_bn": "মডার্ন মোড়",
+   "name_en": "Modern More",
+   "lat": 25.7456,
+   "lng": 89.2552,
+   "radius": 1500
+  },
+  {
+   "id": "charpara",
+   "parent": "mymensingh",
+   "kind": "area",
+   "name_bn": "চরপাড়া",
+   "name_en": "Charpara",
+   "lat": 24.7497,
+   "lng": 90.4073,
+   "radius": 1500
+  },
+  {
+   "id": "kandirpar",
+   "parent": "cumilla",
+   "kind": "area",
+   "name_bn": "কান্দিরপাড়",
+   "name_en": "Kandirpar",
+   "lat": 23.4607,
+   "lng": 91.1809,
+   "radius": 1500
+  }
+ ],
+ "roads": [
+  {
+   "loc": "farmgate",
+   "bn": "বিজয় সরণি",
+   "en": "Bijoy Sarani"
+  },
+  {
+   "loc": "farmgate",
+   "bn": "মানিক মিয়া অ্যাভিনিউ",
+   "en": "Manik Mia Avenue"
+  },
+  {
+   "loc": "farmgate",
+   "bn": "ফার্মগেট ফ্লাইওভার",
+   "en": "Farmgate Flyover"
+  },
+  {
+   "loc": "mohakhali",
+   "bn": "মহাখালী ফ্লাইওভার",
+   "en": "Mohakhali Flyover"
+  },
+  {
+   "loc": "mohakhali",
+   "bn": "বীর উত্তম এ কে খন্দকার সড়ক",
+   "en": "Mohakhali-Gulshan Link Road"
+  },
+  {
+   "loc": "banani",
+   "bn": "কামাল আতাতুর্ক অ্যাভিনিউ",
+   "en": "Kemal Ataturk Avenue"
+  },
+  {
+   "loc": "banani",
+   "bn": "বনানী ১১ নম্বর সড়ক",
+   "en": "Banani Road 11"
+  },
+  {
+   "loc": "gulshan-1",
+   "bn": "গুলশান অ্যাভিনিউ",
+   "en": "Gulshan Avenue"
+  },
+  {
+   "loc": "gulshan-2",
+   "bn": "গুলশান-বাড্ডা লিংক রোড",
+   "en": "Gulshan-Badda Link Road"
+  },
+  {
+   "loc": "badda",
+   "bn": "প্রগতি সরণি",
+   "en": "Pragati Sarani"
+  },
+  {
+   "loc": "bashundhara",
+   "bn": "কুড়িল-পূর্বাচল সংযোগ সড়ক",
+   "en": "Kuril-Purbachal Road"
+  },
+  {
+   "loc": "kuril",
+   "bn": "কুড়িল বিশ্বরোড",
+   "en": "Kuril Bishwa Road"
+  },
+  {
+   "loc": "kuril",
+   "bn": "বিমানবন্দর সড়ক",
+   "en": "Airport Road"
+  },
+  {
+   "loc": "uttara",
+   "bn": "জসীমউদ্দীন রোড",
+   "en": "Jashimuddin Road"
+  },
+  {
+   "loc": "uttara",
+   "bn": "হাউজ বিল্ডিং রোড",
+   "en": "House Building Road"
+  },
+  {
+   "loc": "abdullahpur",
+   "bn": "ঢাকা-ময়মনসিংহ মহাসড়ক",
+   "en": "Dhaka-Mymensingh Highway"
+  },
+  {
+   "loc": "mirpur-10",
+   "bn": "বেগম রোকেয়া সরণি",
+   "en": "Begum Rokeya Sarani"
+  },
+  {
+   "loc": "mirpur-1",
+   "bn": "মিরপুর রোড",
+   "en": "Mirpur Road"
+  },
+  {
+   "loc": "mohammadpur",
+   "bn": "রিংরোড",
+   "en": "Ring Road"
+  },
+  {
+   "loc": "gabtoli",
+   "bn": "ঢাকা-আরিচা মহাসড়ক",
+   "en": "Dhaka-Aricha Highway"
+  },
+  {
+   "loc": "dhanmondi",
+   "bn": "সাতমসজিদ রোড",
+   "en": "Satmasjid Road"
+  },
+  {
+   "loc": "dhanmondi",
+   "bn": "মিরপুর রোড (ধানমন্ডি)",
+   "en": "Mirpur Road (Dhanmondi)"
+  },
+  {
+   "loc": "science-lab",
+   "bn": "মিরপুর রোড (সায়েন্স ল্যাব)",
+   "en": "Mirpur Road (Science Lab)"
+  },
+  {
+   "loc": "shahbag",
+   "bn": "মৎস্য ভবন",
+   "en": "Matsya Bhaban"
+  },
+  {
+   "loc": "kawran-bazar",
+   "bn": "কাজী নজরুল ইসলাম অ্যাভিনিউ",
+   "en": "Kazi Nazrul Islam Avenue"
+  },
+  {
+   "loc": "tejgaon",
+   "bn": "তেজগাঁও-গুলশান লিংক রোড",
+   "en": "Tejgaon-Gulshan Link Road"
+  },
+  {
+   "loc": "malibagh",
+   "bn": "মালিবাগ ফ্লাইওভার",
+   "en": "Malibagh Flyover"
+  },
+  {
+   "loc": "rampura",
+   "bn": "রামপুরা ব্রিজ",
+   "en": "Rampura Bridge"
+  },
+  {
+   "loc": "motijheel",
+   "bn": "দিলকুশা সড়ক",
+   "en": "Dilkusha Road"
+  },
+  {
+   "loc": "jatrabari",
+   "bn": "ঢাকা-চট্টগ্রাম মহাসড়ক",
+   "en": "Dhaka-Chattogram Highway"
+  },
+  {
+   "loc": "jatrabari",
+   "bn": "যাত্রাবাড়ী ফ্লাইওভার",
+   "en": "Jatrabari Flyover"
+  },
+  {
+   "loc": "savar",
+   "bn": "ঢাকা-আরিচা মহাসড়ক (সাভার)",
+   "en": "Dhaka-Aricha Highway (Savar)"
+  },
+  {
+   "loc": "gec-circle",
+   "bn": "সিডিএ অ্যাভিনিউ",
+   "en": "CDA Avenue"
+  },
+  {
+   "loc": "agrabad",
+   "bn": "শেখ মুজিব রোড",
+   "en": "Sheikh Mujib Road"
+  },
+  {
+   "loc": "muradpur",
+   "bn": "ঢাকা ট্রাঙ্ক রোড",
+   "en": "Dhaka Trunk Road"
+  },
+  {
+   "loc": "tongi",
+   "bn": "টঙ্গী স্টেশন রোড",
+   "en": "Tongi Station Road"
+  },
+  {
+   "loc": "joydebpur",
+   "bn": "জয়দেবপুর চৌরাস্তা",
+   "en": "Joydebpur Chourasta"
+  },
+  {
+   "loc": "zindabazar",
+   "bn": "জিন্দাবাজার সড়ক",
+   "en": "Zindabazar Road"
+  }
+ ]
+}

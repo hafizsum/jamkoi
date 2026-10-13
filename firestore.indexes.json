@@ -1,0 +1,12 @@
+{
+  "indexes": [
+    { "collectionGroup": "reports", "queryScope": "COLLECTION", "fields": [ {"fieldPath": "level", "order": "ASCENDING"}, {"fieldPath": "createdAt", "order": "ASCENDING"} ] },
+    { "collectionGroup": "reports", "queryScope": "COLLECTION", "fields": [ {"fieldPath": "utcHour", "order": "ASCENDING"}, {"fieldPath": "createdAt", "order": "ASCENDING"} ] },
+    { "collectionGroup": "reports", "queryScope": "COLLECTION", "fields": [ {"fieldPath": "utcHour", "order": "ASCENDING"}, {"fieldPath": "level", "order": "ASCENDING"}, {"fieldPath": "createdAt", "order": "ASCENDING"} ] },
+    { "collectionGroup": "reports", "queryScope": "COLLECTION", "fields": [ {"fieldPath": "locationId", "order": "ASCENDING"}, {"fieldPath": "createdAt", "order": "ASCENDING"} ] },
+    { "collectionGroup": "reports", "queryScope": "COLLECTION", "fields": [ {"fieldPath": "locationId", "order": "ASCENDING"}, {"fieldPath": "level", "order": "ASCENDING"}, {"fieldPath": "createdAt", "order": "ASCENDING"} ] },
+    { "collectionGroup": "reports", "queryScope": "COLLECTION", "fields": [ {"fieldPath": "locationId", "order": "ASCENDING"}, {"fieldPath": "utcHour", "order": "ASCENDING"}, {"fieldPath": "createdAt", "order": "ASCENDING"} ] },
+    { "collectionGroup": "reports", "queryScope": "COLLECTION", "fields": [ {"fieldPath": "locationId", "order": "ASCENDING"}, {"fieldPath": "utcHour", "order": "ASCENDING"}, {"fieldPath": "level", "order": "ASCENDING"}, {"fieldPath": "createdAt", "order": "ASCENDING"} ] }
+  ],
+  "fieldOverrides": []
+}

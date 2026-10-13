@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JamKoi</title>
+<meta name="description" content="জ্যামকই - বাংলাদেশের লাইভ ট্রাফিক রিপোর্ট | JamKoi - community traffic reports for Bangladesh">
+<meta name="theme-color" content="#17212b">
+<meta property="og:title" content="JamKoi - জ্যামকই">
+<meta property="og:description" content="Community traffic reports, hotspots and route comparison for Bangladesh.">
+<meta property="og:image" content="assets/icons/icon-512.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@500;700&amp;family=Hind+Siliguri:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body data-title="nav.routes">
+<main id="main" class="jk-page">
+  <h1 class="h3 mb-1" data-i18n="route.title"></h1><p class="text-muted mb-3" data-i18n="route.desc"></p>
+  <div class="alert alert-warning" role="note"><strong data-i18n="route.estimate_label"></strong>: <span data-i18n="route.disclaimer"></span></div>
+  <div class="jk-grid jk-grid-side"><div>
+    <form id="jk-route-form" class="jk-card mb-3" novalidate><div class="mb-2 position-relative"><label for="rt-from" class="form-label mb-1" data-i18n="route.from"></label><div class="input-group">
+  <input id="rt-from" class="form-control" autocomplete="off" maxlength="60" data-i18n-ph="route.ph">
+  <button class="btn btn-outline-dark" type="button" data-gps="from" data-i18n-label="map.locate">📍</button>
+  <button class="btn btn-outline-dark" type="button" data-pick="from" data-i18n-label="route.pick">🗺️</button></div>
+  <ul class="list-group jk-search-results d-none" id="rt-from-results" role="listbox"></ul></div><div class="mb-2 position-relative"><label for="rt-to" class="form-label mb-1" data-i18n="route.to"></label><div class="input-group">
+  <input id="rt-to" class="form-control" autocomplete="off" maxlength="60" data-i18n-ph="route.ph">
+  <button class="btn btn-outline-dark" type="button" data-gps="to" data-i18n-label="map.locate">📍</button>
+  <button class="btn btn-outline-dark" type="button" data-pick="to" data-i18n-label="route.pick">🗺️</button></div>
+  <ul class="list-group jk-search-results d-none" id="rt-to-results" role="listbox"></ul></div>
+      <div class="d-flex gap-2 mt-3"><button type="submit" class="btn jk-btn-primary flex-grow-1" id="rt-go" data-i18n="route.compare"></button>
+        <button type="button" class="btn btn-outline-dark" id="rt-swap" data-i18n-label="route.swap">⇅</button></div>
+      <p class="small text-muted mt-2 mb-0" id="rt-hint" data-i18n="route.hint"></p></form>
+    <div id="rt-error" class="alert alert-danger d-none" role="alert"></div><div id="rt-results" aria-live="polite"></div><div data-ad-slot="route_page"></div></div>
+    <div><div id="rt-map" class="jk-report-map" style="height:420px" role="application" data-i18n-label="map.aria"></div><p class="small text-muted mt-2" data-i18n="route.credit"></p></div></div></main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+<script type="module" src="assets/js/routes.js"></script>
+</body>
+</html>
